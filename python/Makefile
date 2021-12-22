@@ -3,7 +3,7 @@
 all: lint test clean
 
 lint:
-	poetry run black .
+	poetry run black -t py310 .
 	poetry run pylint ./aoc2021 ./tests
 
 test:

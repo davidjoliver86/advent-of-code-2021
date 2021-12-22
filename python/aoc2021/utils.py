@@ -2,17 +2,22 @@
 General helper utilities
 """
 import pathlib
+from typing import Any, Callable
 
 
-def ints(path: str) -> list[int]:
+def lines(path: str, func: Callable = None) -> list[Any]:
     """
-    Reads a file and returns a list of its lines cast to integers.
+    Reads a file and returns a list of its lines. Optionally accepts a calllable, and if provided,
+    applies that callable to all lines.
 
     Args:
         path (str): Path of the file to read.
+        func (Callable, optional): Function to apply to each line (takes one argument). Defaults to None.
 
     Returns:
-        list[int]: A list of those lines converted to integers. Blank lines are skipped.
+        list[Any]: A list of those lines. Blank lines are skipped.
     """
     data = pathlib.Path(path).read_text("utf-8")
-    return [int(line) for line in data.splitlines() if line]
+    if func:
+        return [func(line) for line in data.splitlines() if line]
+    return [line for line in data.splitlines() if line]

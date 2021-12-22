@@ -44,7 +44,7 @@ def first_star() -> int:
     Returns:
         int: Solution for the first star.
     """
-    return count_increases(utils.ints("fixtures/day1.txt"))
+    return count_increases(utils.lines("fixtures/day1.txt", int))
 
 
 def second_star() -> int:
@@ -52,7 +52,7 @@ def second_star() -> int:
     Returns:
         int: Solution for the second star.
     """
-    return count_increases(add_next_two(utils.ints("fixtures/day1.txt")))
+    return count_increases(add_next_two(utils.lines("fixtures/day1.txt", int)))
 
 
 if __name__ == "__main__":
